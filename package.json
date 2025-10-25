@@ -11,7 +11,7 @@
     "url": "git+https://github.com/johnmeshulam/eslint-plugin-bsd.git"
   },
   "license": "Unlicense",
-  "author": "",
+  "author": "John Meshulam",
   "type": "commonjs",
   "main": "index.js",
   "keywords": [
