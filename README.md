@@ -1,4 +1,4 @@
-# eslint-plugin-basad
+# eslint-plugin-bsd
 
 Ensures your code is Kosher and follows the Halacha
 
