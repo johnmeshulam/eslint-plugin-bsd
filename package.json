@@ -1,0 +1,35 @@
+{
+  "name": "eslint-plugin-basad",
+  "version": "1.0.0",
+  "description": "ESLint plugin to ensure your code is Kosher and follows the Halacha",
+  "homepage": "https://github.com/johnmeshulam/eslint-plugin-basad#readme",
+  "bugs": {
+    "url": "https://github.com/johnmeshulam/eslint-plugin-basad/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnmeshulam/eslint-plugin-basad.git"
+  },
+  "license": "Unlicense",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "basad"
+  ],
+  "scripts": {
+    "test": "node tests/basad.test.js"
+  },
+  "dependencies": {
+    "requireindex": "^1.2.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0"
+  }
+}

@@ -1,0 +1,45 @@
+/**
+ * @fileoverview ESLint plugin to ensure your code follows the Halacha
+ * @author Your Name
+ */
+
+"use strict";
+
+//------------------------------------------------------------------------------
+// Requirements
+//------------------------------------------------------------------------------
+
+const requireIndex = require("requireindex");
+
+//------------------------------------------------------------------------------
+// Plugin Definition
+//------------------------------------------------------------------------------
+
+// Read package.json for name and version
+const pkg = require("./package.json");
+
+const plugin = {
+  meta: {
+    name: pkg.name,
+    version: pkg.version,
+    namespace: "basad"
+  },
+  
+  rules: requireIndex(__dirname + "/rules"),
+  
+  configs: {}
+};
+
+// Assign configs here so we can reference plugin
+Object.assign(plugin.configs, {
+  recommended: {
+    plugins: {
+      basad: plugin
+    },
+    rules: {
+      "basad/basad": "error"
+    }
+  }
+});
+
+module.exports = plugin;
