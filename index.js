@@ -1,6 +1,6 @@
 /**
  * @fileoverview ESLint plugin to ensure your code follows the Halacha
- * @author Your Name
+ * @author John Meshulam
  */
 
 "use strict";
@@ -22,7 +22,7 @@ const plugin = {
   meta: {
     name: pkg.name,
     version: pkg.version,
-    namespace: "basad"
+    namespace: "bsd"
   },
   
   rules: requireIndex(__dirname + "/rules"),
@@ -37,7 +37,7 @@ Object.assign(plugin.configs, {
       basad: plugin
     },
     rules: {
-      "basad/basad": "error"
+      "bsd/basad": "error"
     }
   }
 });

@@ -12,35 +12,21 @@
 /** @type {import('eslint').Rule.RuleModule} */
 module.exports = {
   meta: {
-    type: "problem", // `problem`, `suggestion`, or `layout`
+    type: "problem",
     docs: {
-      description: "Ensures the first line of the file is a comment matching a certain regex",
-      recommended: false,
+      description: "Ensures the code file is Kosher",
+      recommended: true,
       url: null, // URL to the documentation page for this rule
     },
-    fixable: null, // Or `code` or `whitespace`
-    schema: [
-      {
-        type: "object",
-        properties: {
-          pattern: {
-            type: "string",
-            description: "Regular expression pattern that the first line comment must match"
-          }
-        },
-        additionalProperties: false
-      }
-    ], // Add a schema if the rule has options
+    fixable: "code", // Or `code` or `whitespace`
     messages: {
-      missingComment: "File must start with a comment on the first line",
-      invalidPattern: "First line comment must match the required pattern: {{pattern}}"
+      missingComment: "Your code is not Kosher! Please add בס˝ד at the top of your file.",
+      invalidPattern: "Your code is not Kosher! Please add בס˝ד at the top of your file."
     }
   },
 
   create(context) {
-    // Get the regex pattern from options (default to a placeholder)
-    const options = context.options[0] || {};
-    const patternString = options.pattern || "^//\\s*TODO:.*$"; // Placeholder pattern
+    const patternString = /(\s*\/\/.*בס["""＂″˝ˮ]ד.*|\s*\/\*.*בס["""＂″˝ˮ]ד.*\*\/)/g;
     const pattern = new RegExp(patternString);
 
     const sourceCode = context.sourceCode || context.getSourceCode();
@@ -55,7 +41,10 @@ module.exports = {
           context.report({
             node,
             loc: { line: 1, column: 0 },
-            messageId: "missingComment"
+            messageId: "missingComment",
+            fix(fixer) {
+              return fixer.insertTextBefore(node, '// בס"ד\n');
+            }
           });
           return;
         }
@@ -68,7 +57,10 @@ module.exports = {
           context.report({
             node,
             loc: { line: 1, column: 0 },
-            messageId: "missingComment"
+            messageId: "missingComment",
+            fix(fixer) {
+              return fixer.insertTextBefore(firstComment, '// בס"ד\n');
+            }
           });
           return;
         }
@@ -89,8 +81,8 @@ module.exports = {
             node: firstComment,
             loc: firstComment.loc,
             messageId: "invalidPattern",
-            data: {
-              pattern: patternString
+            fix(fixer) {
+              return fixer.replaceText(firstComment, '// בס"ד');
             }
           });
         }

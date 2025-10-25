@@ -5,16 +5,16 @@ Ensures your code is Kosher and follows the Halacha
 ## Installation
 
 ```bash
-npm install eslint-plugin-basad --save-dev
+npm install eslint-plugin-bsd --save-dev
 ```
 
 ## Usage
 
-Add `basad` to the plugins section of your ESLint configuration file. You can omit the `eslint-plugin-` prefix:
+Add `basad` to the plugins section of your ESLint configuration file.
 
 ```javascript
 // eslint.config.js
-import basad from "eslint-plugin-basad";
+import basad from "eslint-plugin-bsd";
 
 export default [
   {
@@ -23,12 +23,7 @@ export default [
       basad,
     },
     rules: {
-      "basad/basad": [
-        "error",
-        {
-          pattern: "^//\\s*@license.*$", // Your custom regex pattern
-        },
-      ],
+      "bsd/basad": "error",
     },
   },
 ];
@@ -38,7 +33,7 @@ Or use the recommended configuration:
 
 ```javascript
 // eslint.config.js
-import basad from "eslint-plugin-basad";
+import basad from "eslint-plugin-bsd";
 
 export default [
   {
@@ -50,61 +45,40 @@ export default [
 
 ## Rules
 
-### `basad/basad`
+### `bsd/basad`
 
-Ensures that the first line of the file is a comment matching a specified regex pattern.
+Ensures that the first line of the file is a comment starting with `// בס"ד`.
 
-#### Options
+This rule requires files to begin with the comment `// בס"ד` (Besiyata Dishmaya - "with the help of heaven").
 
-- `pattern` (string): A regular expression pattern that the first line comment must match. Default: `"^//\\s*TODO:.*$"`
+**This rule is fixable.** When you use the quick fix option or run ESLint with `--fix`, it will automatically add `// בס"ד` at the top of your file.
 
 #### Examples
 
-**Valid** (with pattern `"^//\\s*@license.*$"`):
+**Valid**:
 
 ```javascript
-// @license MIT
+// בס"ד
 const x = 1;
 ```
 
 ```javascript
-/* @license Apache-2.0 */
+// בס"ד
 function test() {}
 ```
 
 **Invalid**:
 
 ```javascript
-// Missing comment on first line
 const x = 1;
 ```
 
 ```javascript
-// Comment doesn't match pattern
+// This is a regular comment
 const x = 1;
 ```
 
-## Configuration
-
-The rule accepts a configuration object with the following properties:
-
-- `pattern`: A string representing a regular expression pattern
-
-Example configurations:
-
-```javascript
-// Require a license header
-"basad/basad": ["error", { pattern: "^//\\s*@license.*$" }]
-
-// Require a copyright notice
-"basad/basad": ["error", { pattern: "^//\\s*Copyright.*$" }]
-
-// Require a file description
-"basad/basad": ["error", { pattern: "^//\\s*@fileoverview.*$" }]
-
-// Require a specific comment format
-"basad/basad": ["error", { pattern: "^//\\s*BASAD:.*$" }]
-```
+When using ESLint with `--fix` or via editor quick fix, these invalid cases will automatically be fixed to include `// בס"ד` at the top.
 
 ## License
 

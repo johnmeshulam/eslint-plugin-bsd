@@ -1,14 +1,14 @@
 {
-  "name": "eslint-plugin-basad",
+  "name": "eslint-plugin-bsd",
   "version": "1.0.0",
   "description": "ESLint plugin to ensure your code is Kosher and follows the Halacha",
-  "homepage": "https://github.com/johnmeshulam/eslint-plugin-basad#readme",
+  "homepage": "https://github.com/johnmeshulam/eslint-plugin-bsd#readme",
   "bugs": {
-    "url": "https://github.com/johnmeshulam/eslint-plugin-basad/issues"
+    "url": "https://github.com/johnmeshulam/eslint-plugin-bsd/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/johnmeshulam/eslint-plugin-basad.git"
+    "url": "git+https://github.com/johnmeshulam/eslint-plugin-bsd.git"
   },
   "license": "Unlicense",
   "author": "",

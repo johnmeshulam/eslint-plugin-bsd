@@ -19,56 +19,35 @@ const rule = require("../rules/basad");
 const ruleTester = new RuleTester({
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: "module"
-  }
+    sourceType: "module",
+  },
 });
 
 ruleTester.run("basad", rule, {
-  valid: [
-    {
-      code: "// TODO: This is a valid comment\nconst x = 1;",
-      options: [{ pattern: "^//\\s*TODO:.*$" }]
-    },
-    {
-      code: "/* TODO: Block comment */\nconst x = 1;",
-      options: [{ pattern: "^/\\*\\s*TODO:.*\\*/$" }]
-    },
-    {
-      code: "// @license MIT\nfunction test() {}",
-      options: [{ pattern: "^//\\s*@license.*$" }]
-    }
-  ],
+  valid: [{ code: '// בס"ד' }, { code: "/* בס˝ד */" }],
 
   invalid: [
     {
       code: "const x = 1;",
-      options: [{ pattern: "^//\\s*TODO:.*$" }],
-      errors: [{
-        messageId: "missingComment"
-      }]
+      output: '// בס"ד\nconst x = 1;',
+      errors: [{ messageId: "missingComment" }],
     },
     {
       code: "\nconst x = 1;",
-      options: [{ pattern: "^//\\s*TODO:.*$" }],
-      errors: [{
-        messageId: "missingComment"
-      }]
+      output: '\n// בס"ד\nconst x = 1;',
+      errors: [{ messageId: "missingComment" }],
     },
     {
       code: "// This is a comment\nconst x = 1;",
-      options: [{ pattern: "^//\\s*TODO:.*$" }],
-      errors: [{
-        messageId: "invalidPattern"
-      }]
+      output: '// בס"ד\nconst x = 1;',
+      errors: [{ messageId: "invalidPattern" }],
     },
     {
       code: "\n// TODO: This is too late\nconst x = 1;",
-      options: [{ pattern: "^//\\s*TODO:.*$" }],
-      errors: [{
-        messageId: "missingComment"
-      }]
-    }
-  ]
+      output: '\n// בס"ד\n// TODO: This is too late\nconst x = 1;',
+      errors: [{ messageId: "missingComment" }],
+    },
+  ],
 });
 
 console.log("All tests passed!");

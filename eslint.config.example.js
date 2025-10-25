@@ -1,4 +1,4 @@
-// Example ESLint configuration using eslint-plugin-basad
+// Example ESLint configuration using eslint-plugin-bsd
 // This file demonstrates how to configure the basad rule
 
 const basad = require("./index.js");
@@ -10,11 +10,7 @@ module.exports = [
       basad
     },
     rules: {
-      // Configure the basad rule with a custom pattern
-      // This example requires files to start with a comment containing "@license"
-      "basad/basad": ["error", { 
-        pattern: "^//\\s*@license.*$" 
-      }]
+      "bsd/basad": "error"
     }
   }
 ];
