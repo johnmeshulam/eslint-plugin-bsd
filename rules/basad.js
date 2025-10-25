@@ -85,7 +85,7 @@ module.exports = {
             loc: firstComment.loc,
             messageId: "invalidPattern",
             fix(fixer) {
-              return fixer.insertTextBeforeRange([0, 0], '// בס"ד');
+              return fixer.insertTextBeforeRange([0, 0], '// בס"ד\n');
             },
           });
         }
