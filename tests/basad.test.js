@@ -17,7 +17,7 @@ const rule = require("../rules/basad");
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parserOptions: {
+  languageOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
   },

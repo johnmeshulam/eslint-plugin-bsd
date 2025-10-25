@@ -1,16 +1,18 @@
 // Example ESLint configuration using eslint-plugin-bsd
-// This file demonstrates how to configure the basad rule
+// This file demonstrates how to configure the basad rule with the flat config format
+// Requires ESLint 9+
 
-const basad = require("./index.js");
+const { defineConfig } = require("eslint/config");
+const bsd = require("./index.js");
 
-module.exports = [
+module.exports = defineConfig([
   {
     files: ["**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx"],
     plugins: {
-      basad
+      bsd
     },
     rules: {
       "bsd/basad": "error"
     }
   }
-];
+]);

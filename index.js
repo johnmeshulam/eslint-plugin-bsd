@@ -27,19 +27,13 @@ const plugin = {
   
   rules: requireIndex(__dirname + "/rules"),
   
-  configs: {}
-};
-
-// Assign configs here so we can reference plugin
-Object.assign(plugin.configs, {
-  recommended: {
-    plugins: {
-      basad: plugin
-    },
-    rules: {
-      "bsd/basad": "error"
+  configs: {
+    recommended: {
+      rules: {
+        "bsd/basad": "error"
+      }
     }
   }
-});
+};
 
 module.exports = plugin;
