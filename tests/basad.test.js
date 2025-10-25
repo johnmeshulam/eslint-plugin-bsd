@@ -34,17 +34,17 @@ ruleTester.run("basad", rule, {
     },
     {
       code: "\nconst x = 1;",
-      output: '\n// בס"ד\nconst x = 1;',
+      output: '// בס"ד\n\nconst x = 1;',
       errors: [{ messageId: "missingComment" }],
     },
     {
       code: "// This is a comment\nconst x = 1;",
-      output: '// בס"ד\nconst x = 1;',
+      output: '// בס"ד// This is a comment\nconst x = 1;',
       errors: [{ messageId: "invalidPattern" }],
     },
     {
       code: "\n// TODO: This is too late\nconst x = 1;",
-      output: '\n// בס"ד\n// TODO: This is too late\nconst x = 1;',
+      output: '// בס"ד\n\n// TODO: This is too late\nconst x = 1;',
       errors: [{ messageId: "missingComment" }],
     },
   ],

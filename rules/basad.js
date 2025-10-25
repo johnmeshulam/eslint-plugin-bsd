@@ -20,13 +20,16 @@ module.exports = {
     },
     fixable: "code", // Or `code` or `whitespace`
     messages: {
-      missingComment: "Your code is not Kosher! Please add בס˝ד at the top of your file.",
-      invalidPattern: "Your code is not Kosher! Please add בס˝ד at the top of your file."
-    }
+      missingComment:
+        "Your code is not Kosher! Please add בס˝ד at the top of your file.",
+      invalidPattern:
+        "Your code is not Kosher! Please add בס˝ד at the top of your file.",
+    },
   },
 
   create(context) {
-    const patternString = /(\s*\/\/.*בס["""＂″˝ˮ]ד.*|\s*\/\*.*בס["""＂″˝ˮ]ד.*\*\/)/g;
+    const patternString =
+      /(\s*\/\/.*בס["""＂″˝ˮ]ד.*|\s*\/\*.*בס["""＂″˝ˮ]ד.*\*\/)/g;
     const pattern = new RegExp(patternString);
 
     const sourceCode = context.sourceCode || context.getSourceCode();
@@ -35,7 +38,7 @@ module.exports = {
       Program(node) {
         // Get all comments in the file
         const comments = sourceCode.getAllComments();
-        
+
         // Check if there are any comments
         if (comments.length === 0) {
           context.report({
@@ -43,8 +46,8 @@ module.exports = {
             loc: { line: 1, column: 0 },
             messageId: "missingComment",
             fix(fixer) {
-              return fixer.insertTextBefore(node, '// בס"ד\n');
-            }
+              return fixer.insertTextBeforeRange([0, 0], '// בס"ד\n');
+            },
           });
           return;
         }
@@ -59,8 +62,8 @@ module.exports = {
             loc: { line: 1, column: 0 },
             messageId: "missingComment",
             fix(fixer) {
-              return fixer.insertTextBefore(firstComment, '// בס"ד\n');
-            }
+              return fixer.insertTextBeforeRange([0, 0], '// בס"ד\n');
+            },
           });
           return;
         }
@@ -82,11 +85,11 @@ module.exports = {
             loc: firstComment.loc,
             messageId: "invalidPattern",
             fix(fixer) {
-              return fixer.replaceText(firstComment, '// בס"ד');
-            }
+              return fixer.insertTextBeforeRange([0, 0], '// בס"ד');
+            },
           });
         }
-      }
+      },
     };
-  }
+  },
 };
